@@ -10,20 +10,33 @@
 <body>
     <header></header>
     <main>
-        <form>
-            <label for="name">Your name:</label>
-            <input type="text" name="name">
+        <section class="box-container">
+            <form class="form-container">
+                <article class="form-element">
+                    <label for="name">Your name:</label>
+                    <input type="text" name="name">
+                </article>
+                
+                <article class="form-element">
+                <label for="email">Your email:</label>
+                <input type="email" name="email">
+                </article>
 
-            <label for="email">Your email:</label>
-            <input type="email" name="email">
+                <article class="form-element" id="message">
+                <label for="message">Your message:</label>
+                <textarea name="message" class="message"></textarea>
+                </article>
 
-            <label for="message">Your message:</label>
-            <textarea name="message" cols="30" rows="10"></textarea>
+                <article class="form-element">
+                <label for="url">Your URL:</label>
+                <input type="url" name="url">
+                </article>
 
-            <input type="url" name="url">
-
-            <input type="submit">
-        </form>
+                <article class="form-element">
+                <input type="submit">
+                </article>
+            </form>
+        </section>
     </main>
     <footer></footer>
     <script src="script.js"></script>
