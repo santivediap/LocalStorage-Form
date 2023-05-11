@@ -14,20 +14,48 @@ document.querySelector("form").addEventListener("submit", function(event) {
 
     const userProfile = {name: userName, email: userEmail, message: userMessage, url: userURL}
 
-    if(localStorage.users) {
+    // Form validation
 
-        // Existing users condition
+    if(validateForm()) {
+        if(localStorage.users) {
 
-        let users = JSON.parse(localStorage.users)
-        usersList = [];
-        usersList.push(...users)
-        usersList.push(userProfile)
-        localStorage.users = JSON.stringify(usersList)
+            // Existing users condition
+    
+            let users = JSON.parse(localStorage.users)
+            usersList = [];
+            usersList.push(...users)
+            usersList.push(userProfile)
+            localStorage.users = JSON.stringify(usersList)
+        } else {
+    
+            // Non existing users condition
+    
+            usersList.push(userProfile);
+            localStorage.users = JSON.stringify(usersList);
+        }
     } else {
+        console.log("Form no validada!");
+    }
 
-        // Non existing users condition
+    // Function used for validate form
 
-        usersList.push(userProfile);
-        localStorage.users = JSON.stringify(usersList);
+    function validateForm() {
+        if(userName == "" || userEmail == "" || userMessage == "" || userURL == "") {
+            console.log("Debes introducir todos los valores en los campos!");
+            return false
+        } else {
+            if(userName.length < 5) {
+                console.log("Tu nombre debe ser mayor de 5 caracteres!");
+                return false
+            } else if (!userEmail.endsWith(".com")) {
+                console.log("Tu email debe acabar en .com!");
+                return false
+            } else if (userMessage.length > 20) {
+                console.log("Tu mensaje es demasiado largo! Maximo: 20 caracteres");
+                return false
+            } else {
+                return true
+            }
+        }
     }
 })
