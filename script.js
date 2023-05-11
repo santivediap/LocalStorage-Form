@@ -3,7 +3,7 @@
 document.querySelector("form").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    // Add localStorage functions
+    // Add localStorage parameters
 
     const userName = event.target.name.value;
     const userEmail = event.target.email.value;
@@ -59,3 +59,45 @@ document.querySelector("form").addEventListener("submit", function(event) {
         }
     }
 })
+
+ // Paint user cards
+
+ if(localStorage.users) {
+    let userList = JSON.parse(localStorage.users)
+
+    let newSection = document.createElement("section")
+    newSection.className = "box-container"
+    newSection.setAttribute("id", "cards")
+    document.querySelector("main").appendChild(newSection)
+
+    userList.forEach(obj => {
+
+        console.log(obj);
+
+        let cardDiv = document.createElement("div")
+        cardDiv.className = "usercard"
+
+        let userName = document.createElement("h2")
+        let userNameText = document.createTextNode(obj.name)
+        userName.appendChild(userNameText)
+
+        let userImg = document.createElement("img")
+        userImg.setAttribute("src", obj.url)
+        userImg.setAttribute("alt", `${obj.name}-img`)
+
+        let userEmail = document.createElement("p")
+        let userEmailText = document.createTextNode(obj.email)
+        userEmail.appendChild(userEmailText)
+
+        let userMessage = document.createElement("p")
+        let userMessageText = document.createTextNode(obj.message)
+        userMessage.appendChild(userMessageText)
+
+        cardDiv.appendChild(userName)
+        cardDiv.appendChild(userImg)
+        cardDiv.appendChild(userEmail)
+        cardDiv.appendChild(userMessage)
+
+        document.querySelector("#cards").appendChild(cardDiv)
+    })
+ }
