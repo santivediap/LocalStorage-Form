@@ -1,5 +1,9 @@
 // Prevent default behavior of form button
 
+if(localStorage.users == undefined) {
+    localStorage.users = JSON.stringify([]);
+}
+
 document.querySelector("form").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -17,22 +21,9 @@ document.querySelector("form").addEventListener("submit", function(event) {
     // Form validation
 
     if(validateForm()) {
-        if(localStorage.users) {
-
-            // Existing users condition
-    
             let users = JSON.parse(localStorage.users)
-            usersList = [];
-            usersList.push(...users)
-            usersList.push(userProfile)
-            localStorage.users = JSON.stringify(usersList)
-        } else {
-    
-            // Non existing users condition
-    
-            usersList.push(userProfile);
-            localStorage.users = JSON.stringify(usersList);
-        }
+            users.push(userProfile)
+            localStorage.users = JSON.stringify(users)
     } else {
         console.log("Form no validada!");
     }
