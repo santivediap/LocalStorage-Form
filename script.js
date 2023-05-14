@@ -92,3 +92,13 @@ document.querySelector("form").addEventListener("submit", function(event) {
         document.querySelector("#cards").appendChild(cardDiv)
     })
  }
+
+ // Delete all contacts button functionality
+
+ document.querySelector("#delete-contacts").addEventListener("click", function(event) {
+    event.preventDefault()
+
+    localStorage.users = JSON.stringify([])
+
+    console.log("Todos los contactos fueron borrados!");
+ });
