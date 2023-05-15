@@ -63,8 +63,6 @@ document.querySelector("form").addEventListener("submit", function(event) {
 
     userList.forEach(obj => {
 
-        console.log(obj);
-
         let cardDiv = document.createElement("div")
         cardDiv.className = "usercard"
 
@@ -84,10 +82,16 @@ document.querySelector("form").addEventListener("submit", function(event) {
         let userMessageText = document.createTextNode(obj.message)
         userMessage.appendChild(userMessageText)
 
+        let deleteContactButton = document.createElement("button")
+        deleteContactButton.setAttribute("id", userName.innerHTML)
+        let deleteContactText = document.createTextNode("Delete")
+        deleteContactButton.appendChild(deleteContactText)
+
         cardDiv.appendChild(userName)
         cardDiv.appendChild(userImg)
         cardDiv.appendChild(userEmail)
         cardDiv.appendChild(userMessage)
+        cardDiv.appendChild(deleteContactButton)
 
         document.querySelector("#cards").appendChild(cardDiv)
     })
@@ -101,4 +105,17 @@ document.querySelector("form").addEventListener("submit", function(event) {
     localStorage.users = JSON.stringify([])
 
     console.log("Todos los contactos fueron borrados!");
+ });
+
+ // Delete one contact functionality
+
+ JSON.parse(localStorage.users).forEach((user, index) => {
+    document.querySelector(`#${user.name}`).addEventListener("click", function(event) {
+        event.preventDefault()
+
+        let usersList = JSON.parse(localStorage.users)
+        usersList.splice(index, 1);
+
+        localStorage.users = JSON.stringify(usersList)
+    })
  });
