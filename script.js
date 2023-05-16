@@ -31,15 +31,6 @@ document.querySelector("form").addEventListener("submit", function(event) {
     // Function used for validate form
 
     function validateForm() {
-
-        let usersList = JSON.parse(localStorage.users);
-
-        usersList.forEach(user => {
-            if(user.name == userName || user.email == userEmail) {
-                console.log("Este usuario ya existe!");
-                return false;
-            }
-
         if(userName == "" || userEmail == "" || userMessage == "" || userURL == "") {
             console.log("Debes introducir todos los valores en los campos!");
             return false
@@ -54,9 +45,9 @@ document.querySelector("form").addEventListener("submit", function(event) {
                 console.log("Tu mensaje es demasiado largo! Maximo: 20 caracteres");
                 return false
             } else {
-                return true;
+                return true
             }
-        }})
+        }
     }
 })
 
